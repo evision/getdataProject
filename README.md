@@ -51,10 +51,12 @@ Xsub <- X[,grep('(mean\\(|std)', names(X), value = T)]
 
 The next section gives a solution for problem #3 of the project.  We load the *activity_labels.txt* file then we join this data with the labels data (Y) we got earlier.  We then add this information to our data set, adding a new column with descriptive activity labels.
 
+In merging Y with the activity labels, it's important to use plyr's join() function instead of merge().  This will preserve the order of the Y data.
+
 ~~~R
 ## ----------------------------------------------------------------------
-## 3. Use descriptive activity names to name the activities in data set
-activities <- merge(Y, activities)
+## 3. Use descriptive activity names to name the activities in data set.  
+activities <- join(Y, activities)
 Xsub <- cbind(Xsub, activities)
 ~~~
 
@@ -90,10 +92,10 @@ colnames(Xsub)[69] <- "Subject"
 
 ## Compute for mean for each unique subject-activity combination
 tidy <- aggregate(. ~ Subject + ActivityName, data = Xsub, mean)
-arrange(tidy, Subject, ActivityName)
+tidy <- arrange(tidy, Subject, ActivityName)
 
 ## Write the tidied data to file
-write.table(tidy, "tidy.txt")
+write.table(tidy, "tidy.txt", row.names = FALSE)
 ~~~
 
 ### CodeBook.md

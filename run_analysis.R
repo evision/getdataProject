@@ -21,9 +21,10 @@ XtrainSubject <- read.table("./UCI HAR Dataset/train/subject_train.txt")
 activities <- read.table("./UCI HAR Dataset/activity_labels.txt")
 
 ## ----------------------------------------------------------------------
-## 1. Merge the training and the test sets to create one data set
+## 1. Combine the training and the test sets to create one data set
 X <- rbind(Xtest, Xtrain)
 Y <- rbind(Ytest, Ytrain)
+
 
 ## ----------------------------------------------------------------------
 ## 2. Extract only the measurements on the mean and std deviation
@@ -35,7 +36,7 @@ Xsub <- X[,grep('(mean\\(|std)', names(X), value = T)]
 
 ## ----------------------------------------------------------------------
 ## 3. Use descriptive activity names to name the activities in data set
-activities <- merge(Y, activities)
+activities <- join(Y, activities)
 Xsub <- cbind(Xsub, activities)
 
 ## ----------------------------------------------------------------------
@@ -59,7 +60,7 @@ colnames(Xsub)[69] <- "Subject"
 
 ## Compute for mean for each unique subject-activity combination
 tidy <- aggregate(. ~ Subject + ActivityName, data = Xsub, mean)
-arrange(tidy, Subject, ActivityName)
+tidy <- arrange(tidy, Subject, ActivityName)
 
 ## Write the tidied data to file
-write.table(tidy, "tidy.txt")
+write.table(tidy, "tidy.txt", row.names = FALSE)
