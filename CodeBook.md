@@ -59,11 +59,13 @@ Finally, we just add the activities data to our Xsub data frame as two additiona
 This part involves renaming the 67th and 68th variables of our Xsub data frame to *ActivityCode* and *ActivityName*, respectively.
 
 #### Create a second, independent data set containing the mean of each variable for each activity and each subject.
-Our Xsub data set does not yet have information on the subject, so we'll prepare this first.  We obtain the subject information from the *subject_test.txt* and *subject_train.txt* files and combine them with `rbind()`.  Note what we should be carefull to use the same order of row binding we did combining the X and the Y data to prevent inconsistency.
+Our Xsub data set does not yet have information on the subject, so we'll prepare this first.  We obtain the subject information from the *subject_test.txt* and *subject_train.txt* files and combine them with `rbind()`.  Note what we should be careful to use the same order of row binding we did when combining the X and the Y data to prevent inconsistency.
 
-We now add the subjects data to our Xsub data as a new column named *Subject*.
+We now add the subjects data to our Xsub data as a new column named *Subject*.  Xsub now has 69 variables.
 
 Now that we have all the data we need, we use the `aggregate()` function to split the data into groups containing unique Subject and Activity values, and compute for the mean of each variable for each group.  We save this data to the **tidy** data frame.
+
+The tidy data frame now has 35 observations and 69 variables.
 
 ### Citation Request:
 Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. A Public Domain Dataset for Human Activity Recognition Using Smartphones. 21th European Symposium on Artificial Neural Networks, Computational Intelligence and Machine Learning, ESANN 2013. Bruges, Belgium 24-26 April 2013.
