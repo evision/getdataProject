@@ -1,9 +1,14 @@
-## Download and unzip the data file.  Just uncomment the next 2 lines
-## to download and unzip the file.
+## Download and unzip the data file.  
+## IMPORTANT:  Just uncomment the next 2 lines to download and unzip the file.
+## To save time, it's commented so I don't have to repeat downloading and 
+## extracting the file every time this script is executed.  If the two lines 
+## are not commente, just ignore this. :)
+
 #download.file("https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip", destfile = "project.zip", method = "curl")
 #unzip("project.zip")
 
-#library(dplyr)
+## Load the dplyr package
+library(dplyr)
 
 ## Read the data
 Xtest = read.table("./UCI HAR Dataset/test/X_test.txt")
@@ -22,8 +27,8 @@ Y <- rbind(Ytest, Ytrain)
 
 ## ----------------------------------------------------------------------
 ## 2. Extract only the measurements on the mean and std deviation
-## First, let's add the descriptive column names so we can filter it.
-## This also partially solves Problem #4.
+##    First, let's add the descriptive column names so we can filter it.
+##    This also partially solves Problem #4.
 colnames(X) <- features$V2
 ## Select only columns with 'std' and 'mean(' using regular expression
 Xsub <- X[,grep('(mean\\(|std)', names(X), value = T)]
@@ -35,8 +40,8 @@ Xsub <- cbind(Xsub, activities)
 
 ## ----------------------------------------------------------------------
 ## 4. Appropriately label the data set with descriptive variable names
-## This is partially solved when we added the variable names from the 
-## 'features' data frame in the Problem #2 solution.
+##    This is partially solved when we added the variable names from the 
+##    'features' data frame in the Problem #2 solution.
 colnames(Xsub)[67] <- "ActivityCode"
 colnames(Xsub)[68] <- "ActivityName"
 
