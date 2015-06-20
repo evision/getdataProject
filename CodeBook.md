@@ -6,7 +6,7 @@ This project uses data that represent data collected from accelerometers from th
 ### Source
 The data was downloaded from the [UCI Machine Learning Repository](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip).
 
-### Data Set Information
+### Raw Data Collection
 
 The experiments have been carried out with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope, we captured 3-axial linear acceleration and 3-axial angular velocity at a constant rate of 50Hz. The experiments have been video-recorded to label the data manually. The obtained dataset has been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data. 
 
@@ -19,28 +19,7 @@ Finally a Fast Fourier Transform (FFT) was applied to some of these signals prod
 These signals were used to estimate variables of the feature vector for each pattern:  
 '-XYZ' is used to denote 3-axial signals in the X, Y and Z directions.
 
-tBodyAcc-XYZ
-tGravityAcc-XYZ
-tBodyAccJerk-XYZ
-tBodyGyro-XYZ
-tBodyGyroJerk-XYZ
-tBodyAccMag
-tGravityAccMag
-tBodyAccJerkMag
-tBodyGyroMag
-tBodyGyroJerkMag
-fBodyAcc-XYZ
-fBodyAccJerk-XYZ
-fBodyGyro-XYZ
-fBodyAccMag
-fBodyAccJerkMag
-fBodyGyroMag
-fBodyGyroJerkMag
 
-The set of variables that were estimated from these signals are: 
-
-mean(): Mean value
-std(): Standard deviation
 
 ### Data Files
 These are the files used for this project
@@ -61,7 +40,7 @@ These are the files used for this project
 
 * train/subject_train.txt - A single column of data representing the subject who performed the activity on the training set. 
 
-### Transformations
+### Transformations (How to Create the Tidy Data)
 The data was extracted from a zip file downloaded from the source mentioned above.  The relevant files were then loaded into separate data frames using the function `read.table()`.
 
 #### Combining the training and test data
@@ -96,6 +75,37 @@ We now add the subjects data to our Xsub data as a new column named *Subject*.  
 Now that we have all the data we need, we use the `aggregate()` function to split the data into groups containing unique Subject and Activity values, and compute for the mean of each variable for each group.  We save this data to the **tidy** data frame.
 
 The tidy data frame now has 35 observations and 69 variables.
+
+### Tidy Data Variables
+* Subject - A numeric vector representing the subject who performed the activities measured.  Range is from 1 to 6.
+* Activity Name - A char vector that represents a description of the activity measured.
+* Activity Code - A numeric vector that identifies the activity code of the activity being measured.
+* Other Variables
+```R
+tBodyAcc-XYZ
+tGravityAcc-XYZ
+tBodyAccJerk-XYZ
+tBodyGyro-XYZ
+tBodyGyroJerk-XYZ
+tBodyAccMag
+tGravityAccMag
+tBodyAccJerkMag
+tBodyGyroMag
+tBodyGyroJerkMag
+fBodyAcc-XYZ
+fBodyAccJerk-XYZ
+fBodyGyro-XYZ
+fBodyAccMag
+fBodyAccJerkMag
+fBodyGyroMag
+fBodyGyroJerkMag
+```
+
+The set of variables that were estimated from these signals are: 
+
+mean(): Mean value
+std(): Standard deviation
+
 
 ### Citation Request:
 Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. A Public Domain Dataset for Human Activity Recognition Using Smartphones. 21th European Symposium on Artificial Neural Networks, Computational Intelligence and Machine Learning, ESANN 2013. Bruges, Belgium 24-26 April 2013.

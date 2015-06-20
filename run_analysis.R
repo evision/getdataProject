@@ -8,14 +8,14 @@
 #unzip("project.zip")
 
 ## Load the dplyr package
-library(dplyr)
+library(plyr)
 
 ## Read the data
-Xtest = read.table("./UCI HAR Dataset/test/X_test.txt")
-Ytest = read.table("./UCI HAR Dataset/test/y_test.txt")
-Xtrain = read.table("./UCI HAR Dataset/train/X_train.txt")
-Ytrain = read.table("./UCI HAR Dataset/train/y_train.txt")
-features = read.table("./UCI HAR Dataset/features.txt")
+Xtest <- read.table("./UCI HAR Dataset/test/X_test.txt")
+Ytest <- read.table("./UCI HAR Dataset/test/y_test.txt")
+Xtrain <- read.table("./UCI HAR Dataset/train/X_train.txt")
+Ytrain <- read.table("./UCI HAR Dataset/train/y_train.txt")
+features <- read.table("./UCI HAR Dataset/features.txt")
 XtestSubject <- read.table("./UCI HAR Dataset/test/subject_test.txt")
 XtrainSubject <- read.table("./UCI HAR Dataset/train/subject_train.txt")
 activities <- read.table("./UCI HAR Dataset/activity_labels.txt")
